@@ -18,6 +18,7 @@ import Activity from '../lanyard/activity'
 import Spotify from '../lanyard/spotify'
 import { GridPattern } from '@/components/magicui/grid-pattern'
 import { Button } from '../ui/button'
+import Aurora from '../bits/aurora'
 
 export function NavMain() {
   const { location } = useRouterState()
@@ -56,6 +57,7 @@ export function NavMain() {
                   '[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-30 dark:opacity-60'
                 )}
               />
+              <Aurora />
             </div>
 
             <Link
