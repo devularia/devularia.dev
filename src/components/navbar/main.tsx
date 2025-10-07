@@ -17,7 +17,6 @@ import { User } from '../lanyard/user'
 import Activity from '../lanyard/activity'
 import Spotify from '../lanyard/spotify'
 import { GridPattern } from '@/components/magicui/grid-pattern'
-import Aurora from '../bits/Aurora'
 import { Button } from '../ui/button'
 
 export function NavMain() {
@@ -47,10 +46,6 @@ export function NavMain() {
       <motion.div className="mx-auto max-w-[60rem] w-full px-4 pointer-events-auto relative transition-all duration-500 ease-in-out">
         <div className="flex items-center gap-3 relative py-4">
           <div className="flex-1 relative flex items-center justify-between rounded-3xl border border-border overflow-hidden backdrop-blur-sm h-[4rem] px-4">
-            {/* <div className="absolute inset-0 -z-10 opacity-40">
-              <Aurora />
-            </div> */}
-
             <div className="absolute inset-0 -z-[5] pointer-events-none">
               <GridPattern
                 width={20}
@@ -84,7 +79,7 @@ export function NavMain() {
                   exit={{ scaleX: 0, opacity: 0 }}
                   transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                   className={cn(
-                    'pointer-events-none absolute bottom-0 h-[2px] rounded-sm origin-center bg-gradient-to-r from-transparent via-primary/60 to-transparent',
+                    'pointer-events-none absolute top-[45px] h-[2px] rounded-sm origin-center bg-gradient-to-r from-transparent via-primary/60 to-transparent',
                     isMobile ? 'left-1/2 -translate-x-1/2 w-8' : 'left-[40px] right-0'
                   )}
                 />
