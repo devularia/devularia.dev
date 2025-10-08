@@ -6,5 +6,6 @@
 export const routes = [
   { label: 'Projects', to: '/projects' },
   { label: 'About me', to: '/about' },
+  { label: 'Changelog', to: '/changelog' },
   { label: 'Gallery', to: '/gallery' },
 ]

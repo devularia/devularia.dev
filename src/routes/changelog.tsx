@@ -2,7 +2,7 @@ import { Background } from '@/components/background'
 import { Spinner } from '@/components/ui/spinner'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/projects')({
+export const Route = createFileRoute('/changelog')({
   component: RouteComponent,
 })
 

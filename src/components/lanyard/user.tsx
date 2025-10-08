@@ -53,9 +53,10 @@ export function User() {
         </div>
       </HoverCardTrigger>
 
-      <HoverCardContent className="w-72 p-4 bg-transparent backdrop-blur-lg mt-1">
+      <HoverCardContent className="w-72 p-4 bg-transparent backdrop-blur-lg mt-2">
+        <div className="border mb-2 rounded-sm h-10 bg-background"/>
         <div className="flex items-center gap-3">
-          <Avatar className="h-12 w-12 border-2 border-border">
+          <Avatar className="h-14 w-14 border-2 border-border">
             {avatar ? (
               <AvatarImage src={avatar} loading="lazy" />
             ) : (

@@ -1,4 +1,3 @@
-//peguei isso do https://reactbits.dev/backgrounds/aurora
 import { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 
@@ -19,6 +18,7 @@ const FRAG = [
   'uniform vec3 uColorStops[3];',
   'uniform vec2 uResolution;',
   'uniform float uBlend;',
+  'uniform float uAngle;',
   '',
   'out vec4 fragColor;',
   '',
@@ -85,8 +85,17 @@ const FRAG = [
   '  finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \\',
   '}',
   '',
+  'mat2 rot(float a){',
+  '  float s = sin(a);',
+  '  float c = cos(a);',
+  '  return mat2(c, -s, s, c);',
+  '}',
+  '',
   'void main() {',
   '  vec2 uv = gl_FragCoord.xy / uResolution;',
+  '  ',
+  '  // NEW: gira UV em torno do centro',
+  '  uv = (rot(uAngle) * (uv - 0.5)) + 0.5;',
   '  ',
   '  ColorStop colors[3];',
   '  colors[0] = ColorStop(uColorStops[0], 0.0);',
@@ -110,6 +119,16 @@ const FRAG = [
   '}',
 ].join('\n');
 
+type Direction =
+  | 'bottom'
+  | 'top'
+  | 'left'
+  | 'right'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'top-left'
+  | 'top-right'
+  | 'custom';
 
 interface AuroraProps {
   colorStops?: string[];
@@ -117,19 +136,38 @@ interface AuroraProps {
   blend?: number;
   time?: number;
   speed?: number;
+  direction?: Direction;
+  angle?: number;
 }
 
 export default function Aurora(props: AuroraProps) {
-  const { 
-  colorStops = ['#ffffff', '#bfbfbf', '#4d4d4d'], 
-  amplitude = 1.0, 
-  blend = 0.5 
-} = props;
+  const {
+    colorStops = ['#ffffff', '#bfbfbf', '#4d4d4d'],
+    amplitude = 1.0,
+    blend = 0.5,
+    direction = 'bottom',
+    angle,
+  } = props;
 
   const propsRef = useRef<AuroraProps>(props);
   propsRef.current = props;
 
   const ctnDom = useRef<HTMLDivElement>(null);
+
+  function angleFromDirection(dir: Direction, customAngle?: number) {
+    if (dir === 'custom') return customAngle ?? 0;
+    switch (dir) {
+      case 'bottom': return 0;
+      case 'top': return Math.PI;                  // 180°
+      case 'left': return -Math.PI / 2;            // -90°
+      case 'right': return Math.PI / 2;            // 90°
+      case 'bottom-left': return -Math.PI / 4;     // -45°
+      case 'bottom-right': return Math.PI / 4;     // 45°
+      case 'top-left': return -3 * Math.PI / 4;    // -135°
+      case 'top-right': return 3 * Math.PI / 4;    // 135°
+      default: return 0;
+    }
+  }
 
   useEffect(() => {
     const ctn = ctnDom.current;
@@ -161,7 +199,7 @@ export default function Aurora(props: AuroraProps) {
 
     const geometry = new Triangle(gl);
     if (geometry.attributes.uv) {
-      delete geometry.attributes.uv;
+      delete (geometry as any).attributes.uv;
     }
 
     const colorStopsArray = colorStops.map(hex => {
@@ -177,7 +215,8 @@ export default function Aurora(props: AuroraProps) {
         uAmplitude: { value: amplitude },
         uColorStops: { value: colorStopsArray },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
-        uBlend: { value: blend }
+        uBlend: { value: blend },
+        uAngle: { value: angleFromDirection(direction, angle) },
       }
     });
 
@@ -192,11 +231,17 @@ export default function Aurora(props: AuroraProps) {
         program.uniforms.uTime.value = time * speed * 0.1;
         program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
         program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
+
         const stops = propsRef.current.colorStops ?? colorStops;
         program.uniforms.uColorStops.value = stops.map((hex: string) => {
           const c = new Color(hex);
           return [c.r, c.g, c.b];
         });
+
+        const dir = propsRef.current.direction ?? direction;
+        const ang = angleFromDirection(dir as Direction, propsRef.current.angle);
+        program.uniforms.uAngle.value = ang;
+
         renderer.render({ scene: mesh });
       }
     };
@@ -212,7 +257,7 @@ export default function Aurora(props: AuroraProps) {
       }
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [amplitude]);
+  }, [amplitude, direction, angle]);
 
   return <div ref={ctnDom} className="w-full h-full opacity-30" />;
 }

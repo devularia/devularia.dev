@@ -57,7 +57,7 @@ export function NavMain() {
                   '[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-30 dark:opacity-60'
                 )}
               />
-              <Aurora />
+             <Aurora direction='top' />
             </div>
 
             <Link
@@ -103,7 +103,7 @@ export function NavMain() {
                 <Sheet open={open} onOpenChange={setOpen} modal={false}>
                   <SheetTrigger asChild>
                     <Button
-                    variant={'outline'}
+                      variant={'outline'}
                       className="p-2 mr-2 rounded-lg hover:bg-foreground/10"
                     >
                       <Menu className="h-6 w-6" />
@@ -124,18 +124,6 @@ export function NavMain() {
             </div>
           </div>
         </div>
-
-        {isMobile && (
-          <div className="fixed bottom-3 left-3 z-40 flex flex-col items-start gap-2 pointer-events-none">
-            <div className="pointer-events-auto w-full flex justify-start">
-              <Activity />
-            </div>
-
-            <div className="pointer-events-auto w-full flex justify-start">
-              <Spotify />
-            </div>
-          </div>
-        )}
       </motion.div>
     </nav>
   )
