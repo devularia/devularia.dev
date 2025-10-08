@@ -44,7 +44,7 @@ export default function Projects() {
                 className="relative bg-card/80 border border-border/50 backdrop-blur-xl rounded-2xl overflow-hidden h-full flex flex-col shadow-lg"
               >
                 <div className="relative w-full aspect-[15/9] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-l from-primary to-transparent opacity-10 z-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-10 z-0" />
 
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
                     <FaGithub className="w-24 h-24 md:w-28 md:h-28 text-primary/50" aria-hidden="true" />
