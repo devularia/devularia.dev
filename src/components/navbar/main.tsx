@@ -66,7 +66,7 @@ export function NavMain() {
             >
               <img
                 src="/logo.svg"
-                className="w-8 h-8 object-contain invert dark:invert-0"
+                className="w-8 h-8 object-contain invert"
               />
               {!isMobile && (
                 <span className="ml-1 text-foreground font-medium select-none">
