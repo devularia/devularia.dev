@@ -1,8 +1,8 @@
-import { Background } from '@/components/background'
-import { Spinner } from '@/components/ui/spinner'
-import { createFileRoute } from '@tanstack/react-router'
+import { Background } from "@/components/background"
+import Projects from "@/components/projects"
+import { createFileRoute } from "@tanstack/react-router"
 
-export const Route = createFileRoute('/projects')({
+export const Route = createFileRoute("/projects")({
   component: RouteComponent,
 })
 
@@ -10,10 +10,7 @@ function RouteComponent() {
   return (
     <>
       <Background imageUrl="/backgrounds/gta/1.png" />
-
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <Spinner className="w-10 h-10" />
-      </div>
+      <Projects />
     </>
   )
 }

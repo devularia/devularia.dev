@@ -57,7 +57,7 @@ export function NavMain() {
                   '[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-30 dark:opacity-60'
                 )}
               />
-             <Aurora direction='top' />
+              <Aurora direction='top' />
             </div>
 
             <Link
@@ -118,6 +118,17 @@ export function NavMain() {
                     <div className="flex-1 overflow-y-auto">
                       <NavMobile />
                     </div>
+                    {isMobile && (
+                      <div className="fixed bottom-6 left-2 z-40 flex flex-col items-start gap-2 pointer-events-none">
+                        <div className="pointer-events-auto w-full flex justify-start">
+                          <Activity />
+                        </div>
+
+                        <div className="pointer-events-auto w-full flex justify-start">
+                          <Spotify />
+                        </div>
+                      </div>
+                    )}
                   </SheetContent>
                 </Sheet>
               )}

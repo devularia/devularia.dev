@@ -6,13 +6,9 @@ import { FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6";
 import { IoIosMail } from 'react-icons/io'
 import { useIsAtBottom } from '@/hooks/use-isbottom'
-import Activity from './lanyard/activity'
-import Spotify from './lanyard/spotify'
-import { useIsMobile } from '@/hooks/use-mobile'
 
 export default function Footer() {
   const show = useIsAtBottom(16)
-  const isMobile = useIsMobile()
 
   return (
     <AnimatePresence initial={false}>
@@ -30,17 +26,6 @@ export default function Footer() {
           }}
           className="fixed bottom-0 inset-x-0 z-40 pointer-events-none"
         >
-          {isMobile && (
-          <div className="fixed bottom-30 left-2 z-40 flex flex-col items-start gap-2 pointer-events-none">
-            <div className="pointer-events-auto w-full flex justify-start">
-              <Activity />
-            </div>
-
-            <div className="pointer-events-auto w-full flex justify-start">
-              <Spotify />
-            </div>
-          </div>
-        )}
           <div className="mx-auto max-w-[60rem] w-full px-4 pointer-events-auto">
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 rounded-t-3xl border border-border border-b-0 overflow-hidden backdrop-blur-sm py-4 px-6 bg-background/60">
               <div className="absolute inset-0 -z-[5] pointer-events-none">
