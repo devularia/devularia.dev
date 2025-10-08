@@ -214,5 +214,5 @@ export default function Aurora(props: AuroraProps) {
     };
   }, [amplitude]);
 
-  return <div ref={ctnDom} className="w-full h-full opacity-60" />;
+  return <div ref={ctnDom} className="w-full h-full opacity-30" />;
 }
