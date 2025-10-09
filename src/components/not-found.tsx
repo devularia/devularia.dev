@@ -1,6 +1,9 @@
+import { Background } from "./background";
+
 export function NotFound() {
   return (
     <div>
+      <Background imageUrl="/backgrounds/daftpunk/1.png"/>
       <main className="flex-1 flex flex-col items-center justify-center text-center p-70">
         <h1 className="text-4xl font-bold mb-2">
           This is awkward...

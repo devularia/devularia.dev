@@ -9,7 +9,7 @@ export const Route = createFileRoute("/projects")({
 function RouteComponent() {
   return (
     <>
-      <Background imageUrl="/backgrounds/gta/1.png" />
+      <Background imageUrl="backgrounds/daftpunk/1.png" />
       <Projects />
     </>
   )
