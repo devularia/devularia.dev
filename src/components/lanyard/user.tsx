@@ -9,12 +9,13 @@ import {
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { FaGamepad, FaGlobeAmericas } from "react-icons/fa";
-import { MdMonitor, MdSmartphone } from "react-icons/md";
+import { MdMonitor, MdSmartphone} from "react-icons/md";
+import { RiZzzFill } from "react-icons/ri";
 import { Badge } from "../ui/badge";
 import type { DiscordUser } from "@/types/lanyard";
 
 const colors: Record<string, string> = {
-  online: "bg-chart-2",
+  online: "bg-green-500",
   idle: "bg-yellow-500",
   dnd: "bg-red-600",
   offline: "bg-gray-500",
@@ -30,31 +31,49 @@ export function User() {
   }
 
   const status = presence.discord_status || "offline";
-  const statusc = colors[status];
+  const color = colors[status];
+
+  const offline = status === "offline";
 
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
         <div className="relative flex items-center justify-center mr-2 cursor-pointer">
-          <Avatar className="h-12 w-12 border-2 border-border">
-            {avatar ? (
-              <AvatarImage src={avatar} loading="lazy" />
-            ) : (
-              <AvatarFallback className="bg-foreground/10" />
-            )}
-          </Avatar>
+          {!offline && (
+            <div
+              className={cn(
+                "absolute h-8 w-8 rounded-full animate-ping",
+                color
+              )}
+            />
+          )}
 
-          <div
-            className={cn(
-              "absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-background",
-              statusc
+          <div className="relative z-10">
+            <Avatar
+              className={cn(
+                "h-12 w-12 border-2 border-border transition-opacity duration-300",
+                offline ? "opacity-40" : "opacity-100"
+              )}
+            >
+              {avatar ? (
+                <AvatarImage src={avatar} loading="lazy" />
+              ) : (
+                <AvatarFallback className="bg-foreground/10" />
+              )}
+            </Avatar>
+
+            {offline && (
+              <RiZzzFill
+                size={22}
+                className="absolute inset-0 ml-10 mb-7 m-auto animate-pulse"
+              />
             )}
-          />
+          </div>
         </div>
       </HoverCardTrigger>
 
       <HoverCardContent className="w-72 p-4 bg-transparent backdrop-blur-lg mt-2">
-        <div className="border mb-2 rounded-sm h-10 bg-background"/>
+        <div className="border mb-2 rounded-sm h-10 bg-background" />
         <div className="flex items-center gap-3">
           <Avatar className="h-14 w-14 border-2 border-border">
             {avatar ? (
@@ -71,7 +90,6 @@ export function User() {
               </p>
 
               <div className="flex items-center gap-1">
-
                 {user?.primary_guild && (
                   <Badge
                     variant="outline"
