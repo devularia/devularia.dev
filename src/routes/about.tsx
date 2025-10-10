@@ -9,7 +9,7 @@ export const Route = createFileRoute('/about')({
 function RouteComponent() {
   return (
     <>
-      <Background imageUrl="backgrounds/daftpunk/1.png" />
+      <Background imageUrl="backgrounds/nature/1.png" />
 
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <Spinner className="w-10 h-10" />

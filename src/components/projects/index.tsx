@@ -9,6 +9,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty"
+import Aurora from "../bits/aurora"
 
 export default function Projects() {
   const { projects, error, loading } = useGitHubProjects("devularia")
@@ -41,13 +42,13 @@ export default function Projects() {
             {projects.map((project, i) => (
               <div
                 key={i}
-                className="relative bg-card/80 border border-border/50 backdrop-blur-xl rounded-2xl overflow-hidden h-full flex flex-col shadow-lg"
+                className="relative border border-border/50 backdrop-blur-xl rounded-2xl overflow-hidden h-full flex flex-col shadow-lg"
               >
                 <div className="relative w-full aspect-[15/9] overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-10 z-0" />
-
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-5 z-0" />
+                  <Aurora direction="bottom-right" />
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                    <FaGithub className="w-24 h-24 md:w-28 md:h-28 text-primary/50" aria-hidden="true" />
+                    <img src="/logo.svg" className="w-24 h-24 pb-6 md:w-28 md:h-28 opacity-10" />
                   </div>
 
                   <div className="absolute inset-0 flex items-end p-3 z-20">
@@ -60,7 +61,8 @@ export default function Projects() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
-                        className="flex-1"
+                        variant={"outline"}
+                        className="flex-1 text-foreground font-semibold"
                         onClick={() => window.open(project.liveUrl, "_blank")}
                       >
                         View Preview
@@ -78,7 +80,6 @@ export default function Projects() {
                         onClick={() =>
                           window.open(project.repositoryUrl, "_blank")
                         }
-                        aria-label="See code on GitHub"
                       >
                         <FaGithub />
                       </Button>
