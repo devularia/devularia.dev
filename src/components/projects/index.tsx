@@ -61,8 +61,7 @@ export default function Projects() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
-                        variant={"outline"}
-                        className="flex-1 text-foreground font-semibold"
+                        className="flex-1 cursor-pointer"
                         onClick={() => window.open(project.liveUrl, "_blank")}
                       >
                         View Preview
@@ -77,6 +76,7 @@ export default function Projects() {
                     <TooltipTrigger asChild>
                       <Button
                         variant="outline"
+                        className="cursor-pointer"
                         onClick={() =>
                           window.open(project.repositoryUrl, "_blank")
                         }

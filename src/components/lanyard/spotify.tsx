@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { ActivitySkeleton } from "./skeleton";
 import { motion, AnimatePresence } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Spotify() {
   const presence = useLanyard();
   const spotify = presence?.spotify;
+  const isMobile = useIsMobile();
 
   const playing =
     presence?.listening_to_spotify &&
@@ -53,7 +55,7 @@ export default function Spotify() {
         >
           <motion.div
             layoutId="album-art"
-            className="relative h-11 w-11 shrink-0 overflow-hidden rounded-md border border-border"
+            className="relative h-11 w-11 shrink-0 overflow-hidden rounded-md"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4 }}
@@ -74,7 +76,11 @@ export default function Spotify() {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, delay: 0.1 }}
-              className={`mt-0.5 text-sm font-medium truncate whitespace-nowrap`}
+              className={`mt-0.5 font-medium ${
+                isMobile
+                  ? "truncate whitespace-nowrap text-sm max-w-[190px]"
+                  : "text-sm"
+              }`}
             >
               {spotify.song}
             </motion.div>
@@ -83,7 +89,9 @@ export default function Spotify() {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, delay: 0.15 }}
-              className={`text-[12px] text-foreground/70 truncate whitespace-nowrap`}
+              className={`text-[12px] text-foreground/70 truncate whitespace-nowrap ${
+                isMobile ? "text-[11px] max-w-[120px]" : ""
+              }`}
             >
               {spotify.artist}
             </motion.div>

@@ -10,20 +10,6 @@
   src: url('/fonts/IBMPlexSans-Regular.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'IBMPlexSans';
-  font-style: normal;
-  font-weight: 300;
-  src: url('/fonts/IBMPlexSans-Light.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'IBMPlexSans';
-  font-style: italic;
-  font-weight: 400;
-  src: url('/fonts/IBMPlexSans-Italic.ttf') format('truetype');
-}
-
 * {
   font-family: 'IBMPlexSans', sans-serif;
 }

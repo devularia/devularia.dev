@@ -18,7 +18,6 @@ import Activity from '../lanyard/activity'
 import Spotify from '../lanyard/spotify'
 import { GridPattern } from '@/components/magicui/grid-pattern'
 import { Button } from '../ui/button'
-import Aurora from '../bits/aurora'
 
 export function NavMain() {
   const { location } = useRouterState()
@@ -44,7 +43,7 @@ export function NavMain() {
         </>
       )}
 
-      <motion.div className="mx-auto max-w-[60rem] w-full px-4 pointer-events-auto relative transition-all duration-500 ease-in-out">
+      <motion.div className="mx-auto max-w-[50rem] w-full px-4 pointer-events-auto relative transition-all duration-500 ease-in-out">
         <div className="flex items-center gap-3 relative py-4">
           <div className="flex-1 relative flex items-center justify-between rounded-3xl border border-border overflow-hidden backdrop-blur-sm h-[4rem] px-4">
             <div className="absolute inset-0 -z-[5] pointer-events-none">
@@ -57,7 +56,6 @@ export function NavMain() {
                   '[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-30 dark:opacity-60'
                 )}
               />
-              <Aurora direction='top' />
             </div>
 
             <Link

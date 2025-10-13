@@ -1,5 +1,4 @@
 import { Background } from '@/components/background'
-import { Spinner } from '@/components/ui/spinner'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -9,10 +8,12 @@ export const Route = createFileRoute('/')({
 function RouteComponent() {
   return (
     <>
-      <Background imageUrl="backgrounds/nature/1.png" />
+      <Background imageUrl="/backgrounds/nature/1.png" />
 
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <Spinner className="w-10 h-10" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-4 gap-4">
+        <p className="text-foreground/90">
+          I'm too lazy to create the "/" page rn
+        </p>
       </div>
     </>
   )

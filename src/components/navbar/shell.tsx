@@ -6,7 +6,7 @@ export function NavShell({ children }: PropsWithChildren) {
     <div>
       <NavMain />
       <main className="flex-1 flex justify-center">
-        <div className="w-full max-w-[60rem] px-4">
+        <div className="w-full max-w-[50rem] px-4">
           {children}
         </div>
       </main>

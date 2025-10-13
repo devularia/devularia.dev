@@ -73,9 +73,9 @@ export function User() {
       </HoverCardTrigger>
 
       <HoverCardContent className="w-72 p-4 bg-transparent backdrop-blur-lg mt-2">
-        <div className="border mb-2 rounded-sm h-10 bg-background" />
+        <img src="https://dcdn.dstn.to/banners/910877275203989505" className="mb-2 rounded-sm h-10 w-full bg-background" />
         <div className="flex items-center gap-3">
-          <Avatar className="h-14 w-14 border-2 border-border">
+          <Avatar className="h-14 w-14">
             {avatar ? (
               <AvatarImage src={avatar} loading="lazy" />
             ) : (

@@ -33,7 +33,7 @@ export default function Activity() {
         >
           <motion.div
             layoutId="activity-image"
-            className="relative h-11 w-11 shrink-0 overflow-hidden rounded-md border border-border"
+            className="relative h-11 w-11 shrink-0 overflow-hidden rounded-md"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4 }}

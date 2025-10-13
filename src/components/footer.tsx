@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { GridPattern } from '@/components/magicui/grid-pattern'
 import { cn } from '@/lib/utils'
-import Aurora from './bits/aurora'
 import { FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6";
 import { IoIosMail } from 'react-icons/io'
@@ -26,7 +25,7 @@ export default function Footer() {
           }}
           className="fixed bottom-0 inset-x-0 z-40 pointer-events-none"
         >
-          <div className="mx-auto max-w-[60rem] w-full px-4 pointer-events-auto">
+          <div className="mx-auto max-w-[50rem] w-full px-4 pointer-events-auto">
             <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 rounded-t-3xl border border-border border-b-0 overflow-hidden backdrop-blur-sm py-4 px-6 bg-background/60">
               <div className="absolute inset-0 -z-[5] pointer-events-none">
                 <GridPattern
@@ -38,7 +37,6 @@ export default function Footer() {
                     '[mask-image:linear-gradient(to_top_right,white,transparent,transparent)] opacity-30 dark:opacity-60'
                   )}
                 />
-                <Aurora direction='bottom' />
               </div>
 
               <p className="text-sm text-foreground/80 select-none">

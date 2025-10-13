@@ -4,6 +4,5 @@
 // #=====================================================================#
 
 export const routes = [
-  { label: 'About me', to: '/about' },
   { label: 'Projects', to: '/projects' }
 ]

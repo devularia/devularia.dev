@@ -5,8 +5,11 @@ export function getAvatar(p?: LanyardPresence): string | null {
 
   const du = p.discord_user
   if (du?.id) {
-    if (du.avatar)
-      return `https://cdn.discordapp.com/avatars/${du.id}/${du.avatar}.png?size=128`
+    if (du.avatar) {
+      const isGif = du.avatar.startsWith("a_")
+      const ext = isGif ? "gif" : "png"
+      return `https://cdn.discordapp.com/avatars/${du.id}/${du.avatar}.${ext}?size=128`
+    }
 
     const idx = Number(du.id) % 6
     return `https://cdn.discordapp.com/embed/avatars/${isNaN(idx) ? 0 : idx}.png`
@@ -15,8 +18,11 @@ export function getAvatar(p?: LanyardPresence): string | null {
   const id = p.kv?.id
   const avatar = p.kv?.avatar
   if (id) {
-    if (avatar)
-      return `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=128`
+    if (avatar) {
+      const isGif = avatar.startsWith("a_")
+      const ext = isGif ? "gif" : "png"
+      return `https://cdn.discordapp.com/avatars/${id}/${avatar}.${ext}?size=128`
+    }
 
     const idx = Number(id) % 6
     return `https://cdn.discordapp.com/embed/avatars/${isNaN(idx) ? 0 : idx}.png`
