@@ -1,4 +1,3 @@
-// lib/github.ts
 export type GitHubRepo = {
   name: string
   description: string | null
@@ -9,7 +8,6 @@ export type GitHubRepo = {
 export interface Project {
   title: string
   description: string
-  image: string
   liveUrl: string
   repositoryUrl: string
 }
@@ -54,12 +52,10 @@ export async function fetchUserRepos(
 
 export function repoToProject(
   repo: GitHubRepo,
-  image: string
 ): Project {
   return {
     title: repo.name,
     description: repo.description ?? "",
-    image,
     liveUrl: repo.homepage || repo.html_url,
     repositoryUrl: repo.html_url,
   }
@@ -71,12 +67,11 @@ export async function getGitHubProjects(
 ): Promise<Project[]> {
   const {
     perPage = 9,
-    imageChooser = (_r, i) => `/backgrounds/gta/${(i % 3) + 1}.png`,
     filter,
     token,
   } = opts
 
   const repos = await fetchUserRepos(username, perPage, token)
   const filtered = filter ? repos.filter(filter) : repos
-  return filtered.map((r, i) => repoToProject(r, imageChooser(r, i)))
+  return filtered.map((r) => repoToProject(r))
 }
