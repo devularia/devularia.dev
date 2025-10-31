@@ -25,7 +25,7 @@ export default function Gallery() {
   }
 
   return (
-    <div className="py-2">
+    <div>
       <TooltipProvider delayDuration={200}>
         {loading ? null : images.length === 0 ? (
           <div className="flex justify-center py-60">
@@ -42,13 +42,15 @@ export default function Gallery() {
             </Empty>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-[70rem] w-full">
             {images.map((item, i) => (
               <div
                 key={i}
-                className="relative border border-border/50 backdrop-blur-xl rounded-2xl overflow-hidden h-full flex flex-col shadow-lg"
+                className="rounded-2xl backdrop-blur-sm border transition-shadow duration-300 flex flex-col items-start text-left hover:shadow-lg"
               >
-                <ImageDialog imageUrl={item.imageUrl} />
+                <div className="w-full h-48 flex items-center justify-center overflow-hidden rounded-xl">
+                  <ImageDialog imageUrl={item.imageUrl} />
+                </div>
               </div>
             ))}
           </div>

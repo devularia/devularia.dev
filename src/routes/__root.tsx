@@ -6,10 +6,15 @@ import Footer from '@/components/footer';
 
 const RootLayout = () => (
   <LanyardProvider>
-    <NavShell>
-      <Outlet />
-    </NavShell>
-    <Footer />
+    <div className="flex flex-col min-h-screen">
+      <NavShell>
+        <Outlet />
+      </NavShell>
+
+      <div className="mt-auto">
+        <Footer />
+      </div>
+    </div>
   </LanyardProvider>
 );
 

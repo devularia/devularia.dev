@@ -8,8 +8,6 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { FaGamepad, FaGlobeAmericas } from "react-icons/fa";
-import { MdMonitor, MdSmartphone} from "react-icons/md";
 import { RiZzzFill } from "react-icons/ri";
 import { Badge } from "../ui/badge";
 import type { DiscordUser } from "@/types/lanyard";
@@ -72,8 +70,8 @@ export function User() {
         </div>
       </HoverCardTrigger>
 
-      <HoverCardContent className="w-72 p-4 bg-transparent backdrop-blur-lg mt-2">
-        <img src="https://dcdn.dstn.to/banners/910877275203989505" className="mb-2 rounded-xs border h-auto w-full bg-background" />
+      <HoverCardContent className="w-72 p-4 bg-transparent rounded-lg backdrop-blur-lg mt-2 mr-47">
+        <img src="https://dcdn.dstn.to/banners/910877275203989505" className="mb-2 rounded-lg border h-auto w-full bg-background" />
         <div className="flex items-center gap-3">
           <Avatar className="h-14 w-14">
             {avatar ? (
@@ -85,7 +83,7 @@ export function User() {
 
           <div className="flex flex-col">
             <div className="flex items-center flex-wrap gap-2">
-              <p className="font-semibold text-foreground">
+              <p className="font-semibold text-foreground break-words max-w-full">
                 {user?.display_name || user?.global_name || user?.username}
               </p>
 
@@ -93,7 +91,7 @@ export function User() {
                 {user?.primary_guild && (
                   <Badge
                     variant="outline"
-                    className="flex items-center gap-1 font-medium"
+                    className="flex items-center gap-1 font-medium break-words max-w-full"
                   >
                     {user.primary_guild.badge && (
                       <img
@@ -109,15 +107,10 @@ export function User() {
             </div>
 
             {user?.global_name && user?.global_name !== user?.username && (
-              <p className="text-sm text-muted-foreground">@{user.username}</p>
+              <p className="text-sm text-muted-foreground break-words max-w-full">
+                @{user.username}
+              </p>
             )}
-
-            <Badge variant="secondary" className="flex items-center mt-1">
-              {presence.active_on_discord_web && <FaGlobeAmericas size={13} />}
-              {presence.active_on_discord_desktop && <MdMonitor size={13} />}
-              {presence.active_on_discord_mobile && <MdSmartphone size={13} />}
-              {presence.active_on_discord_embedded && <FaGamepad size={13} />}
-            </Badge>
           </div>
         </div>
       </HoverCardContent>

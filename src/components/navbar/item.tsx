@@ -1,27 +1,40 @@
 import { Link, useRouterState } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import * as React from 'react'
 
 interface NavItemProps {
   to: string
   label: string
+  icon?: React.ComponentType<{ className?: string }>
 }
 
-export function NavItem({ to, label }: NavItemProps) {
+export function NavItem({ to, label, icon: Icon }: NavItemProps) {
   const { location } = useRouterState()
   const active = location.pathname === to
 
   return (
     <Link
       to={to}
-      className="relative px-3 py-2"
+      className={cn('relative px-3 py-2 flex items-center gap-2 group',)}
     >
+      {Icon && (
+        <Icon
+          className={cn(
+            'w-5 h-5 transition-colors duration-300',
+            active
+              ? 'text-foreground'
+              : 'text-foreground/40 group-hover:text-foreground'
+          )}
+        />
+      )}
+
       <motion.span
         className={cn(
           'text-sm font-medium transition-colors duration-300',
           active
             ? 'text-foreground'
-            : 'text-foreground/40 hover:text-foreground duration-300'
+            : 'text-foreground/40 group-hover:text-foreground'
         )}
       >
         {label}
@@ -36,7 +49,7 @@ export function NavItem({ to, label }: NavItemProps) {
             duration: 0.60,
             ease: [0.33, 1, 0.68, 1],
           }}
-          className={cn('pointer-events-none absolute inset-x-0 top-[49px] h-[2px]', 'origin-center bg-gradient-to-r from-transparent via-primary/80 to-transparent'
+          className={cn('pointer-events-none absolute inset-x-0 top-[47px] h-[2px]', 'origin-center bg-gradient-to-r from-transparent via-primary/80 to-transparent'
           )}
         />
       )}

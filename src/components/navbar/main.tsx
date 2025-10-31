@@ -4,12 +4,7 @@ import { routes } from '@/constants'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { Menu } from 'lucide-react'
 import { NavItem } from './item'
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-} from '@/components/ui/sheet'
+import { Sheet, SheetTrigger, SheetContent, SheetHeader } from '@/components/ui/sheet'
 import { NavMobile } from './mobile'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -43,9 +38,9 @@ export function NavMain() {
         </>
       )}
 
-      <motion.div className="mx-auto max-w-[50rem] w-full px-4 pointer-events-auto relative transition-all duration-500 ease-in-out">
+      <motion.div className="mx-auto max-w-[70rem] w-full px-4 pointer-events-auto relative transition-all duration-500 ease-in-out">
         <div className="flex items-center gap-3 relative py-4">
-          <div className="flex-1 relative flex items-center justify-between rounded-3xl border border-border overflow-hidden backdrop-blur-sm h-[4rem] px-4">
+          <div className="flex-1 relative flex items-center justify-between rounded-xl border border-border overflow-hidden backdrop-blur-sm h-[4rem] px-4">
             <div className="absolute inset-0 -z-[5] pointer-events-none">
               <GridPattern
                 width={20}

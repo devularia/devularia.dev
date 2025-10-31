@@ -17,7 +17,7 @@ export function ImageDialog({ imageUrl }: { imageUrl: string }) {
         </div>
       </DialogTrigger>
 
-      <DialogContent className="max-w-5xl p-0 bg-transparent border-none shadow-none">
+      <DialogContent className="max-w-5xl p-0 bg-transparent shadow-none border">
         <img
           src={imageUrl}
           className="w-full h-full rounded-xl object-contain"
