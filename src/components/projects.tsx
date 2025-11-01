@@ -9,11 +9,7 @@ import {
 } from "@/components/ui/empty";
 
 export default function Projects() {
-  const { projects, error, loading } = useGitHubProjects("devularia");
-
-  if (error) {
-    return <p className="text-sm text-destructive">{error}</p>;
-  }
+  const { projects, loading } = useGitHubProjects("devularia");
 
   return (
     <div>
@@ -36,15 +32,17 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="rounded-2xl backdrop-blur-sm border transition-all duration-300 p-4 flex flex-row items-start text-left hover:shadow-lg hover:bg-card cursor-pointer"
+              className="group relative rounded-2xl backdrop-blur-sm border border-border/50 transition-all duration-300 p-4 flex flex-row items-start text-left cursor-pointer hover:shadow-lg hover:bg-card/70"
               onClick={() => window.open(project.repositoryUrl, "_blank")}
             >
-              <div className="mr-4 bg-secondary/50 rounded-xl w-10 h-10 flex items-center justify-center shadow-sm flex-shrink-0">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-20 blur-xl transition duration-500 pointer-events-none" />
+
+              <div className="mr-4 bg-secondary/50 rounded-xl w-10 h-10 flex items-center justify-center shadow-sm flex-shrink-0 group-hover:bg-secondary/60 transition-colors duration-300">
                 <FaGithub className="text-xl" />
               </div>
 
-              <div className="flex flex-col">
-                <h3 className="text-lg font-semibold mb-1 line-clamp-3 break-words">
+              <div className="flex flex-col relative z-10">
+                <h3 className="text-lg font-semibold mb-1 line-clamp-3 break-words group-hover:text-foreground transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-sm text-muted-foreground line-clamp-3 break-all overflow-hidden max-w-full">

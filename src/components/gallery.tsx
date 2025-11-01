@@ -1,28 +1,34 @@
-import { TooltipProvider } from "./ui/tooltip"
+import { TooltipProvider } from "./ui/tooltip";
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
-import { FaImage } from "react-icons/fa"
-import { ImageDialog } from "./ui/image-dialog"
+} from "@/components/ui/empty";
+import { FaImage } from "react-icons/fa";
+import { ImageDialog } from "./ui/image-dialog";
 
 type ImageItem = {
-  imageUrl: string
-}
+  imageUrl: string;
+  name: string;
+  description: string;
+};
 
-const imageUrl: ImageItem[] | undefined = undefined
+const imageUrl: ImageItem[] | undefined = undefined;
 
 export default function Gallery() {
-  const images = imageUrl ?? []
-  const loading = false
-  const error = null
+  const images =
+    imageUrl ??
+    [
+      {
+        imageUrl: "https://cataas.com/cat",
+        name: "Random Cat",
+        description: "Each time you refresh this page, it randomizes the cat.",
+      }
+    ];
 
-  if (error) {
-    return <p className="text-sm text-destructive">{error}</p>
-  }
+  const loading = false;
 
   return (
     <div>
@@ -42,14 +48,18 @@ export default function Gallery() {
             </Empty>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-[70rem] w-full">
-            {images.map((item, i) => (
-              <div
-                key={i}
-                className="rounded-2xl backdrop-blur-sm border transition-shadow duration-300 flex flex-col items-start text-left hover:shadow-lg"
-              >
-                <div className="w-full h-48 flex items-center justify-center overflow-hidden rounded-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[70rem] w-full">
+            {images.map((item) => (
+              <div className="relative group rounded-2xl overflow-hidden cursor-pointer border border-border/30 hover:shadow-lg transition-all duration-300">
+                <div className="w-full overflow-hidden">
                   <ImageDialog imageUrl={item.imageUrl} />
+                </div>
+
+                <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-foreground bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none">
+                  <h3 className="text-lg font-semibold">{item.name}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2 text-center">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -57,5 +67,5 @@ export default function Gallery() {
         )}
       </TooltipProvider>
     </div>
-  )
+  );
 }
