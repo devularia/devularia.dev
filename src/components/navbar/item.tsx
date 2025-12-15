@@ -1,13 +1,7 @@
 import { Link, useRouterState } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import * as React from 'react'
-
-interface NavItemProps {
-  to: string
-  label: string
-  icon?: React.ComponentType<{ className?: string }>
-}
+import type { NavItemProps } from '@/types/navbar'
 
 export function NavItem({ to, label, icon: Icon }: NavItemProps) {
   const { location } = useRouterState()

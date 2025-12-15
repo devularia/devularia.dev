@@ -1,45 +1,23 @@
 import { useLanyard } from "@/hooks/use-lanyard";
-import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { ActivitySkeleton } from "./skeleton";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Spotify() {
+  const isMobile = useIsMobile();
   const presence = useLanyard();
   const spotify = presence?.spotify;
-  const isMobile = useIsMobile();
 
   const playing =
     presence?.listening_to_spotify &&
     spotify?.timestamps?.end &&
     Date.now() < spotify.timestamps.end;
 
-  const [progress, setProgress] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const duration = playing && spotify?.timestamps ? spotify.timestamps.end - spotify.timestamps.start : 0;
+  const progress = playing && duration ? ((Date.now() - spotify.timestamps.start) / duration) * 100 : 0;
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!playing || !spotify?.timestamps) return;
-
-    const { start, end } = spotify.timestamps;
-    const duration = end - start;
-
-    const tick = () => {
-      const elapsed = Math.min(Date.now() - start, duration);
-      setProgress((elapsed / duration) * 100);
-    };
-
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [playing, spotify?.timestamps?.start, spotify?.timestamps?.end]);
-
-  if (loading) return <ActivitySkeleton />;
+  if (!presence) return <ActivitySkeleton />;
   if (!playing || !spotify) return null;
 
   return (

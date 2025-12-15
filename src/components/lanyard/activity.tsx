@@ -3,20 +3,12 @@ import { useLanyard } from "@/hooks/use-lanyard";
 import { HelperActivity } from "@/helpers/activity";
 import { ActivitySkeleton } from "./skeleton";
 import { motion, AnimatePresence } from "framer-motion";
-import React from "react";
 
 export default function Activity() {
   const presence = useLanyard();
   const activity = HelperActivity(presence);
-  const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) return <ActivitySkeleton />;
-  if (!activity) return null;
+  if (!activity) return <ActivitySkeleton />;
 
   const act = activity;
 

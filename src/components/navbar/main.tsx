@@ -13,6 +13,7 @@ import Activity from '../lanyard/activity'
 import Spotify from '../lanyard/spotify'
 import { GridPattern } from '@/components/magicui/grid-pattern'
 import { Button } from '../ui/button'
+import type { PropsWithChildren } from 'react'
 
 export function NavMain() {
   const { location } = useRouterState()
@@ -22,6 +23,12 @@ export function NavMain() {
 
   return (
     <nav className="sticky top-0 inset-x-0 z-50 pointer-events-none">
+      <div className="bg-primary/5 backdrop-blur-sm w-full h-10 sticky top-0 flex items-center justify-center px-4 pt- z-50">
+        <span className="text-sm sm:text-base font-medium text-center text-foreground">
+          This website is currently undergoing updates and is still under development.
+        </span>
+      </div>
+
       {!isMobile && (
         <>
           <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40 pointer-events-none">
@@ -59,7 +66,7 @@ export function NavMain() {
             >
               <img
                 src="/logo.svg"
-                className="w-8 h-8 object-contain fill-white"
+                className="w-8 h-8 object-contain fill-foreground"
               />
               {!isMobile && (
                 <span className="ml-1 text-foreground font-medium select-none">
@@ -130,5 +137,18 @@ export function NavMain() {
         </div>
       </motion.div>
     </nav>
+  )
+}
+
+export function NavShell({ children }: PropsWithChildren) {
+  return (
+    <div>
+      <NavMain />
+      <main className="flex-1 flex justify-center">
+        <div className="w-full max-w-[70rem] px-4">
+          {children}
+        </div>
+      </main>
+    </div>
   )
 }
