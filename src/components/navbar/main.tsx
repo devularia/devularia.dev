@@ -31,13 +31,13 @@ export function NavMain() {
 
       {!isMobile && (
         <>
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 z-40 pointer-events-none">
+          <div className="absolute left-4 top-[90px] -translate-y-1/2 z-40 pointer-events-none">
             <div className="pointer-events-auto">
               <Activity />
             </div>
           </div>
 
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 z-40 pointer-events-none">
+          <div className="absolute right-4 top-[90px] -translate-y-1/2 z-40 pointer-events-none">
             <div className="pointer-events-auto">
               <Spotify />
             </div>
